@@ -14,11 +14,31 @@
 
 ### Program:
 ### Create employee table
+![image](https://github.com/BalaSathiesh/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/128462891/e1dc1d54-ad33-4255-8594-aafea29e486d)
 
 ### Create salary_log table
+![image](https://github.com/BalaSathiesh/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/128462891/4bf7377f-7c3f-446b-a36b-e41b23771046)
 
 ### PLSQL Trigger code
-
+```
+ create or replace trigger log_salary1_update
+ before update on emp2
+ for each row
+ declare
+ old_salary number;
+ new_salary number;
+ begin
+ old_salary := :OLD.salary;
+ new_salary := :NEW.salary;
+ if old_salary <> new_salary then
+ insert into logs_salary2(empid, empname, old_salary, new_salary, update_date)
+ values(:OLD.empid, : OLD.empname, old_salary, new_salary, SYSDATE);
+ end if;
+ end;
+ /
+```
 ### Output:
+![image](https://github.com/BalaSathiesh/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/128462891/8ef3a7d4-b4bc-4127-a349-f48c9f09a51f)
 
 ### Result:
+Therefore,Creating Triggers using PL/SQL Exceuted Successfully.
